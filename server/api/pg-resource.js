@@ -73,7 +73,7 @@ module.exports = function(postgres) {
        */
 
       const findUserQuery = {
-        text: 'SELECT * FROM users WHERE id IN ($1);',
+        text: 'SELECT * FROM users WHERE id = $1',
         values: [id]
       } // @TODO: Basic queries
 
