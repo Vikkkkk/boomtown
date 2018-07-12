@@ -144,7 +144,7 @@ module.exports = function(postgres) {
 		INNER JOIN tags
 			ON itemtags.tagid = tags.id
 		WHERE 
-			items.id = 1;`,
+			items.id = $1;`,
         values: [id]
       } // @TODO: Advanced queries
 

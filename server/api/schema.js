@@ -16,10 +16,11 @@ module.exports = gql`
 
   type Item {
     id: ID!
-    title: String!
-    imageurl: String
+    title: String
+    imageUrl: String
+    description: String
     itemowner: User!
-    tags: [Tags]
+    tags: [Tag]
     # created: Date!
     borrower: User
   }
@@ -28,7 +29,7 @@ module.exports = gql`
     id: ID!
     email: String!
     fullname: String!
-    bio: String
+    bio: String!
     items: [Item]
     borrowed: [Item]
   }
@@ -69,9 +70,6 @@ module.exports = gql`
   }
 
   type Mutation {
-    addItem: {
-      item: NewInputType!
-      image: Upload
-    }
+    addItem: Boolean
   }
 `
