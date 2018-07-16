@@ -12,16 +12,16 @@ const { gql } = require('apollo-server')
  */
 module.exports = gql`
   scalar Upload
-  # scalar Date
+  scalar Date
 
   type Item {
     id: ID!
-    title: String
-    imageUrl: String
-    description: String
+    title: String!
+    imageurl: String
+    description: String!
     itemowner: User!
     tags: [Tag]
-    # created: Date!
+    created: Date!
     borrower: User
   }
 

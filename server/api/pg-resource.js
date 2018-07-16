@@ -114,7 +114,7 @@ module.exports = function(postgres) {
          *  @TODO: Advanced queries
          *  Get all Items. Hint: You'll need to use a LEFT INNER JOIN among others
          */
-        text: `SELECT * FROM items WHERE ownerid IN (1);`,
+        text: `SELECT * FROM items WHERE ownerid IN $1;`,
         values: [id]
       })
       return items.rows
