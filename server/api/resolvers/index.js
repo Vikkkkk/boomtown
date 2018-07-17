@@ -24,10 +24,9 @@ const { UploadScalar, DateScalar } = require('../custom-types')
 module.exports = function(app) {
   return {
     Upload: UploadScalar,
-    // Date: DateScalar,
-
     Query: {
       viewer() {
+        // Date: DateScalar,
         /**
          * @TODO: Authentication - Server
          *
@@ -72,7 +71,6 @@ module.exports = function(app) {
         }
       }
     },
-
     User: {
       /**
        *  @TODO: Advanced resolvers
@@ -104,11 +102,9 @@ module.exports = function(app) {
           throw new ApolloError(e)
         }
       }
-      // -------------------------------
     },
-
     Item: {
-      /**
+      /** // -------------------------------
        *  @TODO: Advanced resolvers
        *
        *  The Item GraphQL type has two fields that are not present in the
@@ -119,7 +115,7 @@ module.exports = function(app) {
        *
        */
       // @TODO: Uncomment these lines after you define the Item type with these fields
-      async itemowner() {
+      async itemowner(parent, vars, { pgResource }, info) {
         // @TODO: Replace this mock return statement with the correct user from Postgres
         try {
           const itemOwner = await pgResource.getUserById(parent.ownerid)
@@ -128,7 +124,7 @@ module.exports = function(app) {
           throw new ApolloError(err)
         }
       },
-      async tags() {
+      async tags(parent, vars, { pgResource }, info) {
         try {
           const tagsForItem = await pgResource.getTagsForItem(parent.id)
           return tagsForItem
@@ -136,7 +132,7 @@ module.exports = function(app) {
           throw new ApolloError(e)
         }
       },
-      async borrower() {
+      async borrower(parent, vars, { pgResource }, info) {
         try {
           const borrower = await pgResource.getUserById(parent.borrowerid)
           return borrower
@@ -144,15 +140,12 @@ module.exports = function(app) {
           throw new ApolloError(err)
         }
       }
-      // async imageurl({ imageurl, imageid, mimetype, data }) {
-      //   if (imageurl) return imageurl
-      //   if (imageid) {
-      //     return `data:${mimetype};base64, ${data}`
-      //   }
-      // }
-      // -------------------------------
-    },
-
+    }, //   if (imageurl) return imageurl // async imageurl({ imageurl, imageid, mimetype, data }) {
+    //   if (imageid) {
+    //     return `data:${mimetype};base64, ${data}`
+    //   }
+    // }
+    // -------------------------------
     Mutation: {
       // @TODO: Uncomment this later when we add auth
       // ...authMutations(app),
