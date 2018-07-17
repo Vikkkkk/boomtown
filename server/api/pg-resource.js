@@ -86,8 +86,13 @@ module.exports = function(postgres) {
        *  Customize your throw statements so the message can be used by the client.
        */
 
-      const user = await postgres.query(findUserQuery)
-      return user
+      try {
+        const user = await postgres.query(findUserQuery)
+        return user.rows[0]
+      } catch (e) {
+        throw 'user not found'
+      }
+
       // -------------------------------
     },
     async getItems(idToOmit) {
@@ -114,7 +119,7 @@ module.exports = function(postgres) {
          *  @TODO: Advanced queries
          *  Get all Items. Hint: You'll need to use a LEFT INNER JOIN among others
          */
-        text: `SELECT * FROM items WHERE ownerid IN $1;`,
+        text: `SELECT * FROM items WHERE ownerid = $1`,
         values: [id]
       })
       return items.rows
@@ -125,7 +130,7 @@ module.exports = function(postgres) {
          *  @TODO: Advanced queries
          *  Get all Items. Hint: You'll need to use a LEFT INNER JOIN among others
          */
-        text: `SELECT * FROM items WHERE borrowerid IN (1);`,
+        text: `SELECT * FROM items WHERE borrowerid = $1`,
         values: [id]
       })
       return items.rows

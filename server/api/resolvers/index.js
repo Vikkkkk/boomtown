@@ -52,7 +52,6 @@ module.exports = function(app) {
         }
       },
       async items(parent, args, { pgResource }, info) {
-        // @TODO: Replace this mock return statement with the correct items from Postgres
         try {
           const items = await pgResource.getItems()
           return items
@@ -62,7 +61,6 @@ module.exports = function(app) {
         // -------------------------------
       },
       async tags(parent, args, { pgResource }, info) {
-        // @TODO: Replace this mock return statement with the correct tags from Postgres
         try {
           const tags = await pgResource.getTags()
           return tags
@@ -83,7 +81,7 @@ module.exports = function(app) {
        *
        */
       // @TODO: Uncomment these lines after you define the User type with these fields
-      async items(root, vars, { pgResource }, info) {
+      async items(parent, vars, { pgResource }, info) {
         try {
           const items = await pgResource.getItemsForUser(parent.id)
           return items
@@ -91,8 +89,7 @@ module.exports = function(app) {
           throw new ApolloError(e)
         }
       },
-      async borrowed() {
-        // @TODO: Replace this mock return statement with the correct items from Postgres
+      async borrowed(parent, vars, { pgResource }, info) {
         try {
           const itemsBorrowed = await pgResource.getBorrowedItemsForUser(
             parent.id
@@ -116,7 +113,6 @@ module.exports = function(app) {
        */
       // @TODO: Uncomment these lines after you define the Item type with these fields
       async itemowner(parent, vars, { pgResource }, info) {
-        // @TODO: Replace this mock return statement with the correct user from Postgres
         try {
           const itemOwner = await pgResource.getUserById(parent.ownerid)
           return itemOwner
@@ -140,8 +136,7 @@ module.exports = function(app) {
           throw new ApolloError(err)
         }
       }
-    }, //   if (imageurl) return imageurl // async imageurl({ imageurl, imageid, mimetype, data }) {
-    //   if (imageid) {
+    }, //   if (imageid) { //   if (imageurl) return imageurl // async imageurl({ imageurl, imageid, mimetype, data }) {
     //     return `data:${mimetype};base64, ${data}`
     //   }
     // }
