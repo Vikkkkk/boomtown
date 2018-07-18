@@ -11,12 +11,14 @@ import {
   ALL_ITEMS_QUERY,
   ALL_USER_ITEMS_QUERY,
   ADD_ITEM_MUTATION
-} from '../ApolloClient/queries'
+} from '../apollo/queries'
 
 const itemsData = ({ render }) => {
   return (
     <Query query={ALL_ITEMS_QUERY} variables={{ filter: null }}>
-      {({ data: { items }, data, error }) => render({ items, data, error })}
+      {({ data: { items }, loading, error }) =>
+        render({ items, loading, error })
+      }
     </Query>
   )
 }
@@ -24,7 +26,7 @@ const itemsData = ({ render }) => {
 const userItemsData = ({ userId, render }) => {
   return (
     <Query query={ALL_ITEMS_QUERY} variables={{ filter: null }}>
-      {({ data: { user }, loading }) => render({ user, loading })}
+      {({ data: { user }, loading, error }) => render({ user, loading, error })}
     </Query>
   )
 }
@@ -48,8 +50,8 @@ const addItem = ({ render }) => {
 const ItemsContainer = adopt({
   // @TODO: Uncomment each line as you write the corresponding query.
   // tagData,
-  // itemsData,
-  // userItemsData,
+  itemsData,
+  userItemsData
   // addItem
   // -------------------------------
 })
