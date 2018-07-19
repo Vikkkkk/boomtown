@@ -32,10 +32,17 @@ const userItemsData = ({ userId, render }) => {
 }
 
 const tagData = ({ render }) => {
-  /**
-   * @TODO: Use Apollo's <Query /> component to fetch all the tags.
-   */
-  return undefined
+  return (
+    <Query query={ALL_TAGS_QUERY} variables={{ filter: null }}>
+      {({ data: { tags }, loading, error }) =>
+        render({
+          tags,
+          loading,
+          error
+        })
+      }
+    </Query>
+  )
 }
 
 const addItem = ({ render }) => {
