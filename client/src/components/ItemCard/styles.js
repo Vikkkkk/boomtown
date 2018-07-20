@@ -1,10 +1,12 @@
 const styles = theme => ({
   card: {
-    maxWidth: 400
+    // width: 350
+    margin: 8
   },
   media: {
     height: 0,
-    paddingTop: '56.25%' // 16:9
+    paddingTop: '56.25%', // 16:9
+    background: 'blue'
   },
   actions: {
     display: 'flex'
@@ -20,7 +22,8 @@ const styles = theme => ({
     transform: 'rotate(180deg)'
   },
   avatar: {
-    backgroundColor: 'red'
+    backgroundColor: 'red',
+    marginLeft: '-2rem'
   }
 })
 

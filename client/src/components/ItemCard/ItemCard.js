@@ -34,31 +34,33 @@ import styles from './styles'
 function ItemCard(props) {
   const { classes } = props
   return (
-    <div>
-      <Card className={classes.card}>
-        <CardMedia className={classes.media} image="#" title="" />
-        <CardContent>
-          <CardHeader
-            avatar={
-              <Avatar aria-label="Recipe" className={classes.avatar}>
-                R
-              </Avatar>
-            }
-            title={props.itemowner.fullname}
-            subheader={moment(props.created).fromNow()}
-          />
-          <Typography gutterBottom variant="headline" component="h2">
-            {props.title}
-          </Typography>
-          <Typography component="p">{props.description}</Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small" color="primary">
-            Borrow
-          </Button>
-        </CardActions>
-      </Card>
-    </div>
+    <Card className={classes.card}>
+      <CardMedia className={classes.media} image="#" title="" />
+      <CardContent>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="Recipe" className={classes.avatar}>
+              R
+            </Avatar>
+          }
+          title={props.itemowner.fullname}
+          subheader={moment(props.created).fromNow()}
+        />
+        <Typography gutterBottom variant="headline" component="h2">
+          {props.title}
+        </Typography>
+        <Typography component="p">{props.description}</Typography>
+        <Typography component="p">
+          {' '}
+          Tags: {props.tags.map(tag => <div key={tag.id}>{tag.title}</div>)}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button variant="outlined" size="small" color="secondary">
+          Borrow
+        </Button>
+      </CardActions>
+    </Card>
   )
 }
 

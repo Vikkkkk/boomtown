@@ -4,8 +4,9 @@ const styles = theme => ({
     background: theme.palette.secondary.main,
     padding: theme.spacing.unit * 5,
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing.unit * 20
-    }
+      padding: theme.spacing.unit * 10
+    },
+    paddingTop: '25px !important'
   },
   paper: {
     height: 140,
