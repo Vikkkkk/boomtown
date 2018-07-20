@@ -12,25 +12,6 @@ import CardHeader from '@material-ui/core/CardHeader'
 import Avatar from '@material-ui/core/Avatar'
 import styles from './styles'
 
-// export default class ItemCard extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <br />
-//         <div>BIG OL PICTURE</div>
-//         <div>Avatar</div>
-//         <p>{this.props.itemowner.fullname}</p>
-//         <p>{moment(this.props.created).fromNow()}</p>
-//         <h1>{this.props.title}</h1>
-//         Tags: {this.props.tags.map(tag => <div key={tag.id}>{tag.title}</div>)}
-//         <div>Descriptoion: {this.props.description}</div>
-//         <button>Borrow</button>
-//         <br />
-//       </div>
-//     )
-//   }
-// }
-
 function ItemCard(props) {
   const { classes } = props
   return (
@@ -52,7 +33,9 @@ function ItemCard(props) {
         <Typography component="p">{props.description}</Typography>
         <Typography component="p">
           {' '}
-          Tags: {props.tags.map(tag => <div key={tag.id}>{tag.title}</div>)}
+          {props.tags.length > 0
+            ? props.tags.map(tag => tag.title).join(', ')
+            : null}
         </Typography>
       </CardContent>
       <CardActions>

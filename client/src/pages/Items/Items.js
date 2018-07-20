@@ -13,25 +13,6 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import Radio from '@material-ui/core/Radio'
 import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
-// const Items = ({ classes }) => {
-//   return (
-//     <ItemsContainer>
-//       {({ itemsData: { loading, error, items } }) => {
-//         if (loading) return '...lodading'
-//         if (error) return 'Error, Sorry bud'
-//         return (
-//           <div>
-//             {items.map(item => (
-//               <Grid>
-//                 <ItemCard key={item.id} {...item} />
-//               </Grid>
-//             ))}
-//           </div>
-//         )
-//       }}
-//     </ItemsContainer>
-//   )
-// }
 
 class Items extends React.Component {
   state = {
