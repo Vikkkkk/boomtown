@@ -12,6 +12,9 @@ const styles = theme => ({
   navBar: {
     display: 'flex',
     justifyContent: 'space-between'
+  },
+  shareButton: {
+    display: 'flex'
   }
 })
 

@@ -13,6 +13,8 @@ import {
 import styles from './styles'
 import Logo from '../../images/boomtown.svg'
 import NavMenu from './NavMenu'
+import NavigationIcon from '@material-ui/icons/Navigation'
+import AddIcon from '@material-ui/icons/Add'
 
 function ButtonAppBar(props) {
   const { classes } = props
@@ -23,7 +25,20 @@ function ButtonAppBar(props) {
           <Link to="/items">
             <img src={Logo} alt="" />
           </Link>
-          <NavMenu />
+          <div className={classes.shareButton}>
+            <Link to="/share">
+              <Button
+                variant="extendedFab"
+                aria-label="Delete"
+                className={classes.button}
+                color="primary"
+              >
+                <AddIcon color="secondary" />
+                SHARE SOMETHING
+              </Button>
+            </Link>
+            <NavMenu />
+          </div>
         </Toolbar>
       </AppBar>
     </div>

@@ -36,7 +36,7 @@ class ShareForm extends Component {
     return (
       <Form
         onSubmit={this.handleSubmit}
-        initialValues={{ employed: true, stooge: 'larry' }}
+        initialValues={{}}
         validate={this.validate}
         render={({ handleSubmit, reset, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
