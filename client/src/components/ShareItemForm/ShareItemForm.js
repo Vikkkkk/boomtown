@@ -9,6 +9,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import TextField from './helpers/TextField'
 import { withStyles } from '@material-ui/core/styles'
+import ItemsContainer from '../../containers/ItemsContainer'
 
 class ShareForm extends Component {
   constructor(props) {
@@ -40,22 +41,9 @@ class ShareForm extends Component {
         validate={this.validate}
         render={({ handleSubmit, reset, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
-            <input
-              accept="image/*"
-              className=""
-              id="contained-button-file"
-              multiple
-              type="file"
-            />
-            <label htmlFor="contained-button-file">
-              <Button
-                variant="contained"
-                component="span"
-                className={classes.button}
-              >
-                Upload
-              </Button>
-            </label>
+            <Button color="primary" variant="contained">
+              Upload an image
+            </Button>
             <div>
               <label>Name: </label>
               <Field
@@ -76,18 +64,25 @@ class ShareForm extends Component {
             </div>
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="age-simple">Tags</InputLabel>
-              <Select
-                value=""
-                onChange=""
-                inputProps={{ name: 'age', id: 'age-simple' }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
+
+              <ItemsContainer>
+                {({ tagData: { loading, error, tags } }) => {
+                  if (loading) return '...lodading'
+                  if (error) return 'Error, Sorry bud'
+                  return (
+                    <Select
+                      value=""
+                      onChange=""
+                      inputProps={{ title: 'name', id: 'id' }}
+                    >
+                      {tags.map(item => (
+                        <MenuItem value={item.id}>{item.title}</MenuItem>
+                      ))}
+                    </Select>
+                  )
+                }}
+              </ItemsContainer>
+
               <input type="submit" value="Submit" />
               <pre>{JSON.stringify(values, 0, 2)}</pre>
             </FormControl>

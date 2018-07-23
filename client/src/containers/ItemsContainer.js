@@ -56,7 +56,7 @@ const addItem = ({ render }) => {
 }
 const ItemsContainer = adopt({
   // @TODO: Uncomment each line as you write the corresponding query.
-  // tagData,
+  tagData,
   itemsData,
   userItemsData
   // addItem
