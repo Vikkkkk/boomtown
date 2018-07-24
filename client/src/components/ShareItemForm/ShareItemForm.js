@@ -49,6 +49,12 @@ class ShareForm extends Component {
   handleChange = event => {
     this.setState({ selectedTags: event.target.value })
   }
+  handleCheckbox = event => {
+    console.log(event.target.value)
+    this.setState({
+      selectedTags: event.target.value
+    })
+  }
 
   // converts file to ascii from binary
   getBase64Url() {
@@ -87,6 +93,12 @@ class ShareForm extends Component {
         .filter(t => this.state.selectedTags.indexOf(t.id) > -1)
         .map(t => ({ title: t.title, id: t.id }))
     )
+  }
+  generateTagsText(tags, selected) {
+    return tags
+      .map(t => (selected.indexOf(t.id) > -1 ? t.title : false))
+      .filter(e => e)
+      .join(', ')
   }
 
   validate() {}
@@ -143,30 +155,27 @@ class ShareForm extends Component {
                   <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="age-simple">Tags</InputLabel>
 
-                    {/* <SelectTag /> */}
-
                     <Select
-                      value={this.state.selectedTags}
                       multiple
-                      renderValue={selected => selected.join(', ')}
-                      onChange={event => this.handleChange(event)}
-                      MenuProps={MenuProps}
+                      value={this.state.selectedTags}
+                      onChange={e => this.handleCheckbox(e)}
+                      renderValue={selected => {
+                        return this.generateTagsText(tags, selected)
+                      }}
                     >
-                      {tags.map(tag => (
-                        <MenuItem key={tag.id} value={tag.title}>
-                          <Field name="tags" type="checkbox" value={tag.title}>
-                            {({ input, meta }) => (
-                              <React.Fragment>
-                                <InputLabel>
-                                  <Checkbox {...input} />
-                                  {tag.title}
-                                </InputLabel>
-                              </React.Fragment>
-                            )}
-                          </Field>
-                        </MenuItem>
-                      ))}
+                      {tags &&
+                        tags.map(tag => (
+                          <MenuItem key={tag.id} value={tag.id}>
+                            <Checkbox
+                              checked={
+                                this.state.selectedTags.indexOf(tag.id) > -1
+                              }
+                            />
+                            {tag.title}
+                          </MenuItem>
+                        ))}
                     </Select>
+
                     <input type="submit" value="SHARE" />
                     <pre>{JSON.stringify(values, 0, 2)}</pre>
                   </FormControl>
