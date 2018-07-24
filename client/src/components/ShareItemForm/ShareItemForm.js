@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import TextField from './helpers/TextField'
 import { withStyles } from '@material-ui/core/styles'
 import ItemsContainer from '../../containers/ItemsContainer'
+import SelectTag from './SelectTag'
 
 class ShareForm extends Component {
   constructor(props) {
@@ -45,7 +46,6 @@ class ShareForm extends Component {
               Upload an image
             </Button>
             <div>
-              <label>Name: </label>
               <Field
                 name="name"
                 component={TextField}
@@ -54,7 +54,6 @@ class ShareForm extends Component {
               />
             </div>
             <div>
-              <label>Desription: </label>
               <Field
                 name="description"
                 component={TextField}
@@ -65,25 +64,9 @@ class ShareForm extends Component {
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="age-simple">Tags</InputLabel>
 
-              <ItemsContainer>
-                {({ tagData: { loading, error, tags } }) => {
-                  if (loading) return '...lodading'
-                  if (error) return 'Error, Sorry bud'
-                  return (
-                    <Select
-                      value=""
-                      onChange=""
-                      inputProps={{ title: 'name', id: 'id' }}
-                    >
-                      {tags.map(item => (
-                        <MenuItem value={item.id}>{item.title}</MenuItem>
-                      ))}
-                    </Select>
-                  )
-                }}
-              </ItemsContainer>
+              <SelectTag />
 
-              <input type="submit" value="Submit" />
+              <input type="submit" value="SHARE" />
               <pre>{JSON.stringify(values, 0, 2)}</pre>
             </FormControl>
           </form>
