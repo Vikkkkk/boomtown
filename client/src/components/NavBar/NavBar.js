@@ -1,19 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import MenuIcon from '@material-ui/icons/Menu'
-import {
-  AppBar,
-  Typography,
-  Button,
-  IconButton,
-  Toolbar,
-  withStyles
-} from '@material-ui/core'
+// import MenuIcon from '@material-ui/icons/Menu'
+import { AppBar, Button, Toolbar, withStyles } from '@material-ui/core'
 import styles from './styles'
 import Logo from '../../images/boomtown.svg'
 import NavMenu from './NavMenu'
-import NavigationIcon from '@material-ui/icons/Navigation'
+// import NavigationIcon from '@material-ui/icons/Navigation'
 import AddIcon from '@material-ui/icons/Add'
 
 function ButtonAppBar(props) {

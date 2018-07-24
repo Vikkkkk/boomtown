@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import moment from 'moment'
 import PropTypes from 'prop-types'
@@ -13,7 +13,7 @@ import Avatar from '@material-ui/core/Avatar'
 import styles from './styles'
 
 function ItemCard(props) {
-  const { classes } = props
+  const { classes, item } = props
   return (
     <Card className={classes.card}>
       <CardMedia className={classes.media} image="#" title="" />
@@ -24,17 +24,17 @@ function ItemCard(props) {
               R
             </Avatar>
           }
-          title={props.itemowner.fullname}
-          subheader={moment(props.created).fromNow()}
+          title={item.itemowner.fullname}
+          subheader={moment(item.created).fromNow()}
         />
         <Typography gutterBottom variant="headline" component="h2">
-          {props.title}
+          {item.title}
         </Typography>
-        <Typography component="p">{props.description}</Typography>
+        <Typography component="p">{item.description}</Typography>
         <Typography component="p">
           {' '}
-          {props.tags.length > 0
-            ? props.tags.map(tag => tag.title).join(', ')
+          {item.tags.length > 0
+            ? item.tags.map(tag => tag.title).join(', ')
             : null}
         </Typography>
       </CardContent>

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Redirect, Route, Switch, Link } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import Items from '../pages/Items'
 import Profile from '../pages/Profile'
 import Share from '../pages/Share'

@@ -3,26 +3,26 @@ import ItemsContainer from '../../../containers/ItemsContainer'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import { Checkbox, InputLabel } from '@material-ui/core'
-import { Form, Field } from 'react-final-form'
+import { Field } from 'react-final-form'
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120,
-    maxWidth: 300
-  },
-  chips: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  chip: {
-    margin: theme.spacing.unit / 4
-  }
-})
+// const styles = theme => ({
+//   root: {
+//     display: 'flex',
+//     flexWrap: 'wrap'
+//   },
+//   formControl: {
+//     margin: theme.spacing.unit,
+//     minWidth: 120,
+//     maxWidth: 300
+//   },
+//   chips: {
+//     display: 'flex',
+//     flexWrap: 'wrap'
+//   },
+//   chip: {
+//     margin: theme.spacing.unit / 4
+//   }
+// })
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
