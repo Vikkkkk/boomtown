@@ -5,13 +5,15 @@ const fallback = require('express-history-api-fallback')
 const path = require('path')
 module.exports = function(app) {
   const PORT = process.env.PORT || 8080
-  //  @TODO JWTAUTH secret
   app.use(cookieParser())
   app.set('PORT', PORT)
   app.set('PG_HOST', process.env.PG_HOST || 'localhost')
   app.set('PG_USER', process.env.PG_USER || 'boomtown')
   app.set('PG_PASSWORD', process.env.PG_PASSWORD || 'boomtown')
   app.set('PG_DB', process.env.PG_DB || 'boomtown')
+  app.set('JWT_COOKIE_NAME', 'BoomToken')
+  app.set('JWT_SECRET', process.env.JWT_SECRET || 'BoomSecret')
+
   if (process.env.NODE_ENV === 'production') {
     const root = path.resolve(__dirname, '../public')
     // Serve the static front-end from /public when deployed
