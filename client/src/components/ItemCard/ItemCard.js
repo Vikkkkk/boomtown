@@ -16,7 +16,7 @@ function ItemCard(props) {
   const { classes, item } = props
   return (
     <Card className={classes.card}>
-      <CardMedia className={classes.media} image="#" title="" />
+      <CardMedia className={classes.media} image={item.imageUrl} title="" />
       <CardContent>
         <CardHeader
           avatar={

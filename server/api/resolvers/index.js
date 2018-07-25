@@ -17,7 +17,7 @@ const { ApolloError } = require('apollo-server')
 
 // @TODO: Uncomment these lines later when we add auth
 // const jwt = require("jsonwebtoken")
-// const authMutations = require("./auth")
+const authMutations = require('./auth')
 // -------------------------------
 const { UploadScalar, DateScalar } = require('../custom-types')
 
@@ -132,7 +132,7 @@ module.exports = function(app) {
     // -------------------------------
     Mutation: {
       // @TODO: Uncomment this later when we add auth
-      // ...authMutations(app),
+      ...authMutations(app),
       // -------------------------------
 
       async addItem(parent, args, context, info) {
