@@ -105,9 +105,9 @@ class ShareForm extends Component {
     const {
       validity,
       files: [file]
-    } = this.fileInput.current
+    } = this.fileRef.current
 
-    if (!validity.valid || file) return
+    if (!validity.valid) return
 
     try {
       const itemData = {
