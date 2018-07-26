@@ -1,12 +1,16 @@
 const styles = theme => ({
   card: {
-    // width: 350
-    margin: 8
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    [theme.breakpoints.up('md')]: {
+      maxHeight: 550
+    }
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-    background: 'blue'
+    backgroundImage: 'cover'
   },
   actions: {
     display: 'flex'

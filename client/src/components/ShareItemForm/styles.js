@@ -1,20 +1,33 @@
 const styles = theme => ({
-  root: {
+  headline: {
+    fontWeight: 700,
+    color: theme.palette.text.primary,
+    fontSize: theme.typography.display4.fontSize,
+    [theme.breakpoints.up('md')]: {
+      fontSize: theme.typography.display2.fontSize
+    }
+  },
+  form: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: 420,
+    '& div': { width: '100%', padding: 2 }
   },
-  formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120
+  label: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center'
   },
-  selectEmpty: {
-    marginTop: theme.spacing.unit * 2
+  uploadButton: {
+    marginTop: 20
   },
-  button: {
-    margin: theme.spacing.unit
-  },
-  input: {
+  fileUpload: {
     display: 'none'
+  },
+  checkboxIcon: {
+    fontSize: 35
   }
 })
 

@@ -70,17 +70,6 @@ module.exports = function(app) {
       }
     },
     User: {
-      /**
-       *  @TODO: Advanced resolvers
-       *
-       *  The User GraphQL type has two fields that are not present in the
-       *  user table in Postgres: items and borrowed.
-       *
-       *  According to our GraphQL schema, these fields should return a list of
-       *  Items (GraphQL type) the user has lent (items) and borrowed (borrowed).
-       *
-       */
-      // @TODO: Uncomment these lines after you define the User type with these fields
       async items(parent, vars, { pgResource }, info) {
         try {
           const items = await pgResource.getItemsForUser(parent.id)
@@ -136,19 +125,6 @@ module.exports = function(app) {
       // -------------------------------
 
       async addItem(parent, args, context, info) {
-        /**
-         *  @TODO: Destructuring
-         *
-         *  The 'args' and 'context' parameters of this resolver can be destructured
-         *  to make things more readable and avoid duplication.
-         *
-         *  When you're finished with this resolver, destructure all necessary
-         *  parameters in all of your resolver functions.
-         *
-         *  Again, you may look at the user resolver for an example of what
-         *  destructuring should look like.
-         */
-
         image = await image
         const user = await jwt.decode(context.token, app.get('JWT_SECRET'))
         const newItem = await context.pgResource.saveNewItem({
