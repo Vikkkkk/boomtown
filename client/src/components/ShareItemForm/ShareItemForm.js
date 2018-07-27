@@ -55,9 +55,9 @@ class ShareForm extends Component {
       selectedTags: event.target.value
     })
   }
-  componentWillUnmount = () => {
-    this.props.resetForm()
-  }
+  // componentWillUnmount = () => {
+  //   this.props.resetForm()
+  // }
   handleImageSelect = event => {
     this.setState({ fileSelected: event.target.files[0] })
   }

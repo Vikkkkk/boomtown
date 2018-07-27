@@ -26,7 +26,7 @@ const login = ({ render }) => (
     mutation={LOGIN_MUTATION}
     refetchQueries={result => [{ query: VIEWER_QUERY }]}
   >
-    {(mutation, { data, error, loading }) =>
+    {(mutation, data, error, loading) =>
       render({ mutation, data, error, loading })
     }
   </Mutation>
