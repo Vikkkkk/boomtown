@@ -5,14 +5,7 @@ import Profile from '../pages/Profile'
 import Share from '../pages/Share'
 import Home from '../pages/Home'
 import NavBar from '../components/NavBar'
-// import {
-//   BrowserRouter as Router,
-//   Route,
-//   Switch,
-//   Link,
-//   Redirect,
-//   NavLink
-// } from 'react-router-dom'
+
 
 export default () => (
   <Fragment>
