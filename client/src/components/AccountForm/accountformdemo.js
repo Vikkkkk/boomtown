@@ -56,7 +56,10 @@ class AccountForm extends Component {
                 ? () => {
                     login({
                       variables: {
-                        user: { email: 'cdog@gmail.com', password: 'password' }
+                        user: {
+                          email: 'stu.w.johnston@gmail.com',
+                          password: 'root'
+                        }
                       }
                     })
                   }

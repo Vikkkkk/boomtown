@@ -21,7 +21,14 @@ const signup = ({ render }) => {
 const login = ({ render }) => {
   /**
    * @TODO: Use Apollo's <Mutation /> component to use the login mutation.
+   *
    */
+  ;<Mutation
+    mutation={LOGIN_MUTATION}
+    refetchQueries={render => [{ query: VIEWER_QUERY }]}
+  >
+    {(mutation, { data, error, loading }) => render}
+  </Mutation>
   return undefined
 }
 

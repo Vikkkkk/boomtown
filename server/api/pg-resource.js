@@ -136,7 +136,7 @@ module.exports = function(postgres) {
               // Convert image (file stream) to Base64
               const imageStream = image.stream.pipe(strs('base64'))
 
-              let base64Str = ''
+              let base64Str = 'data:imag/*;base64'
               imageStream.on('data', data => {
                 base64Str += data
               })
@@ -148,6 +148,12 @@ module.exports = function(postgres) {
                 // Generate new Item query
                 // @TODO
                 // -------------------------------
+                const newItemQuery = {
+                  text: '',
+                  values: []
+                }
+
+                const newItem = client.query(newItemQuery)
 
                 // Insert new Item
                 // @TODO
@@ -157,6 +163,7 @@ module.exports = function(postgres) {
                   text:
                     'INSERT INTO uploads (itemid, filename, mimetype, encoding, data) VALUES ($1, $2, $3, $4, $5) RETURNING *',
                   values: [
+                    // get the id from the newly insertec item here
                     // itemid,
                     image.filename,
                     image.mimetype,
@@ -169,20 +176,18 @@ module.exports = function(postgres) {
                 const uploadedImage = await client.query(imageUploadQuery)
                 const imageid = uploadedImage.rows[0].id
 
-                // Generate image relation query
-                // @TODO
-                // -------------------------------
-
-                // Insert image
-                // @TODO
-                // -------------------------------
-
                 // Generate tag relationships query (use the'tagsQueryString' helper function provided)
                 // @TODO
                 // -------------------------------
+                const tagQeury = {
+                  text:
+                    'INSERT INTO itemtags (itemid, tagid) VALUES $(tagsQueryDtring(/* ??? */))',
+                  values: []
+                }
 
                 // Insert tags
                 // @TODO
+                await client.query(tagsQuery)
                 // -------------------------------
 
                 // Commit the entire transaction!

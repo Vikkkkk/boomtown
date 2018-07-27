@@ -6,22 +6,25 @@ import { ApolloProvider } from 'react-apollo'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
 import Routes from './routes/Layout'
-import client from './apollo'
+import apolloClient from './apollo'
 import store from './redux/index'
 import registerServiceWorker from './registerServiceWorker'
 import theme from './theme'
 // import Home from './pages/Home'
 import './index.css'
+import { ViewerProvider } from './context/ViewerProvider'
 
 const App = () => {
   return (
     <ReduxProvider store={store}>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <ApolloProvider client={client}>
-          <Router>
-            <Routes />
-          </Router>
+        <ApolloProvider client={apolloClient}>
+          <ViewerProvider>
+            <Router>
+              <Routes />
+            </Router>
+          </ViewerProvider>
         </ApolloProvider>
       </MuiThemeProvider>
     </ReduxProvider>
