@@ -84,7 +84,9 @@ module.exports = function(app) {
           res: context.req.res
         })
 
-        return true
+        return {
+          id: user.id
+        }
       } catch (e) {
         throw new AuthenticationError(e)
       }

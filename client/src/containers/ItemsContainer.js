@@ -3,7 +3,7 @@ import { Query, Mutation } from 'react-apollo'
 import React from 'react'
 
 // @TODO: Uncommment this line when the ViewerProvider is added to the app.
-// import { ViewerContext } from '../context/ViewerProvider'
+import { ViewerContext } from '../context/ViewerProvider'
 // -------------------------------
 
 import {

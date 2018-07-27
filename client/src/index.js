@@ -12,6 +12,7 @@ import registerServiceWorker from './registerServiceWorker'
 import theme from './theme'
 // import Home from './pages/Home'
 import './index.css'
+import { ViewerProvider } from './context/ViewerProvider'
 
 const App = () => {
   return (
@@ -19,9 +20,11 @@ const App = () => {
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <ApolloProvider client={client}>
-          <Router>
-            <Routes />
-          </Router>
+          <ViewerProvider>
+            <Router>
+              <Routes />
+            </Router>
+          </ViewerProvider>
         </ApolloProvider>
       </MuiThemeProvider>
     </ReduxProvider>
