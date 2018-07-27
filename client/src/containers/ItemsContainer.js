@@ -25,9 +25,19 @@ const itemsData = ({ render }) => {
 
 const userItemsData = ({ userId, render }) => {
   return (
-    <Query query={ALL_ITEMS_QUERY} variables={{ filter: null }}>
-      {({ data: { user }, loading, error }) => render({ user, loading, error })}
-    </Query>
+    <ViewerContext.Consumer>
+      {({ viewer }) => (
+        <Query query={ALL_ITEMS_QUERY} variables={{ filter: null }}>
+          {({ data: { user }, loading, error }) =>
+            render({
+              user,
+              loading,
+              error
+            })
+          }
+        </Query>
+      )}
+    </ViewerContext.Consumer>
   )
 }
 

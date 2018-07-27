@@ -19,14 +19,16 @@ export default () => (
         )
       }
       return (
-        <Switch>
+        <React.Fragment>
           <NavBar />
-          <Route exact path="/items" component={Items} />
-          <Route exact path="/share" component={Share} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/profile/:userid" component={Profile} />
-          <Redirect to="items" />
-        </Switch>
+          <Switch>
+            <Route exact path="/items" component={Items} />
+            <Route exact path="/share" component={Share} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile/:userid" component={Profile} />
+            <Redirect to="items" />
+          </Switch>
+        </React.Fragment>
       )
     }}
   </ViewerContext.Consumer>

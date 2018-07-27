@@ -246,7 +246,6 @@ class ShareForm extends Component {
                     </Select>
 
                     <input type="submit" value="SHARE" />
-                    <pre>{JSON.stringify(values, 0, 2)}</pre>
                   </FormControl>
                 </form>
               )}
