@@ -182,7 +182,6 @@ class ShareForm extends Component {
                       <Fragment>
                         <Button
                           variant="contained"
-                          fullwidth
                           color="primary"
                           onClick={
                             fileSelected

@@ -15,11 +15,15 @@ import {
 
 const itemsData = ({ render }) => {
   return (
-    <Query query={ALL_ITEMS_QUERY} variables={{ filter: null }}>
-      {({ data: { items }, loading, error }) =>
-        render({ items, loading, error })
-      }
-    </Query>
+    <ViewerContext.Consumer>
+      {({ viewer }) => (
+        <Query query={ALL_ITEMS_QUERY} variables={{ filter: null }}>
+          {({ data: { items }, loading, error }) =>
+            render({ items, loading, error })
+          }
+        </Query>
+      )}
+    </ViewerContext.Consumer>
   )
 }
 
@@ -56,11 +60,15 @@ const tagData = ({ render }) => {
 }
 
 const addItem = ({ render }) => (
-  <Mutation mutation={ADD_ITEM_MUTATION}>
-    {(mutation, { data, error, loading }) =>
-      render({ mutation, data, error, loading })
-    }
-  </Mutation>
+  <ViewerContext.Consumer>
+    {({ viewer }) => (
+      <Mutation mutation={ADD_ITEM_MUTATION}>
+        {(mutation, { data, error, loading }) =>
+          render({ mutation, data, error, loading })
+        }
+      </Mutation>
+    )}
+  </ViewerContext.Consumer>
 )
 const ItemsContainer = adopt({
   // @TODO: Uncomment each line as you write the corresponding query.

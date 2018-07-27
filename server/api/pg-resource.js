@@ -136,7 +136,7 @@ module.exports = function(postgres) {
               // Convert image (file stream) to Base64
               const imageStream = image.stream.pipe(strs('base64'))
 
-              let base64Str = ''
+              let base64Str = 'data:image/*;base64, '
               imageStream.on('data', data => {
                 base64Str += data
               })
@@ -145,10 +145,25 @@ module.exports = function(postgres) {
                 // Image has been converted, begin saving things
                 const { title, description, tags } = item
 
-                // Generate new Item query
-                // @TODO
-                // -------------------------------
+                const newItemQuery = {
+                  text:
+                    'INSERT INTO items (title, description, ownerid) VALUES ($1, $2, $3) RETURNING *',
+                  values: [title, description, 1]
+                }
 
+                const newItem = await client.query(newItemQuery)
+                const itemId = newItem.rows[0].id
+                // console.log(newItem, itemId)
+
+                const tagsQuery = {
+                  text: `INSERT INTO itemtags (tagid, itemid) VALUES ${tagsQueryString(
+                    [...tags],
+                    itemId,
+                    ''
+                  )}`,
+                  values: tags.map(tag => tag.id)
+                }
+                await client.query(tagsQuery)
                 // Insert new Item
                 // @TODO
                 // -------------------------------
@@ -157,7 +172,7 @@ module.exports = function(postgres) {
                   text:
                     'INSERT INTO uploads (itemid, filename, mimetype, encoding, data) VALUES ($1, $2, $3, $4, $5) RETURNING *',
                   values: [
-                    // itemid,
+                    itemId,
                     image.filename,
                     image.mimetype,
                     'base64',
@@ -199,6 +214,7 @@ module.exports = function(postgres) {
               })
             })
           } catch (e) {
+            console.log(e)
             // Something went wrong
             client.query('ROLLBACK', err => {
               if (err) {
