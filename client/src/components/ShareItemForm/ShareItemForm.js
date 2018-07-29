@@ -153,10 +153,18 @@ class ShareForm extends Component {
 
           return (
             <Form
-              onSubmit={values => this.saveItem(values, tags, addItem)}
+              onSubmit={(form, values) => {
+                this.saveItem(values, tags, addItem)
+                {
+                  /* document.location.reload() */
+                }
+                this.setState({ selectedTags: [] })
+                form.reset()
+              }}
               initialValues={{}}
               validate={this.validate}
               render={({
+                form,
                 handleSubmit,
                 reset,
                 submitting,

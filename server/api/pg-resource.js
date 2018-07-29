@@ -17,7 +17,7 @@ module.exports = function(postgres) {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
         text:
-          'INSERT INTO users (fullname, email, password) VALUES ($1, $2, $3)', 
+          'INSERT INTO users (fullname, email, password) VALUES ($1, $2, $3)',
         values: [fullname, email, password]
       }
       try {
@@ -36,7 +36,7 @@ module.exports = function(postgres) {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: 'SELECT * FROM users WHERE email = $1', 
+        text: 'SELECT * FROM users WHERE email = $1',
         values: [email]
       }
       try {
@@ -62,11 +62,28 @@ module.exports = function(postgres) {
       // -------------------------------
     },
     async getItems(idToOmit) {
-      const items = await postgres.query({
-        text: `SELECT * FROM items WHERE (ownerid != $1 AND borrowerid IS NULL) OR ($1 IS NULL)`,
-        values: [idToOmit]
-      })
-      return items.rows
+      let text = `SELECT item.id, item.title,item.description,item.created, item.ownerid, item.borrowerid, up.data as imageurl 
+      FROM items item
+      INNER JOIN uploads up
+      ON up.itemid = item.id`
+      if (idToOmit) {
+        text = `SELECT item.id, item.title,item.description,item.created, item.ownerid, item.borrowerid, up.data as imageurl 
+      FROM items item
+      INNER JOIN uploads up
+      ON up.itemid = item.id
+      WHERE item.ownerid <> $1 AND item.borrowerid IS NULL`
+      }
+
+      const query = {
+        text: text,
+        values: idToOmit ? [idToOmit] : []
+      }
+      try {
+        const items = await postgres.query(query)
+        return items.rows
+      } catch (e) {
+        throw 'no items found'
+      }
     },
     async getItemsForUser(id) {
       const items = await postgres.query({
@@ -100,7 +117,6 @@ module.exports = function(postgres) {
       return tags.rows
     },
     async saveNewItem({ item, image, user }) {
-
       return new Promise((resolve, reject) => {
         /**
          * Begin transaction by opening a long-lived connection
@@ -125,7 +141,7 @@ module.exports = function(postgres) {
                 const newItemQuery = {
                   text:
                     'INSERT INTO items (title, description, ownerid) VALUES ($1, $2, $3) RETURNING *',
-                  values: [title, description, 1]
+                  values: [title, description, user.id]
                 }
 
                 const newItem = await client.query(newItemQuery)
