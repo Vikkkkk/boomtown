@@ -14,7 +14,6 @@ import styles from './styles'
 
 function ItemCard(props) {
   const { classes, item } = props
-  console.log(item)
   return (
     <Card className={classes.card}>
       <CardMedia className={classes.media} image={item.imageurl} title="" />

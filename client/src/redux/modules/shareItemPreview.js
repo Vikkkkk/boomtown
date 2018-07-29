@@ -11,7 +11,7 @@ const initalState = {
   description: 'Describe your item',
   tags: [],
   created: new Date(),
-  imageUrl:
+  imageurl:
     'https://dummyimage.com/600x400/ffa600/000000&text=Select+your+Image',
   itemowner: {
     fullname: 'stu'
@@ -21,10 +21,10 @@ const initalState = {
 export default (state = initalState, action) => {
   switch (action.type) {
     case RESET_IMAGE: {
-      return { ...state, image: initalState.imageUrl }
+      return { ...state, imageurl: initalState.imageurl }
     }
     case RESET_NEW_ITEM: {
-      return { ...initalState }
+      return initalState
     }
     case UPDATE_NEW_ITEM: {
       return { ...state, ...action.payload }

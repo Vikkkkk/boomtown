@@ -54,9 +54,10 @@ class ShareForm extends Component {
       selectedTags: event.target.value
     })
   }
-  // componentWillUnmount = () => {
-  //   this.props.resetForm()
-  // }
+  componentWillUnmount = () => {
+    this.props.resetNewItem()
+    this.props.resetImage()
+  }
   handleImageSelect = event => {
     this.setState({ fileSelected: event.target.files[0] })
   }
@@ -85,10 +86,10 @@ class ShareForm extends Component {
   }
 
   dispatchUpdate(values, tags, updateNewItem) {
-    if (!values.imageUrl && this.state.fileSelected) {
-      this.getBase64Url().then(imageUrl => {
+    if (this.state.fileSelected) {
+      this.getBase64Url().then(imageurl => {
         updateNewItem({
-          imageUrl
+          imageurl
         })
       })
     }
@@ -100,7 +101,8 @@ class ShareForm extends Component {
   }
 
   // sends new item to db
-  async saveItem(values, tags, addItem) {
+  async saveItem(values, tags, addItem, form) {
+    console.log(form)
     const {
       validity,
       files: [file]
@@ -119,7 +121,16 @@ class ShareForm extends Component {
           image: file
         }
       })
-      this.setState({ done: true })
+      this.fileRef.current.value = ''
+      this.setState({
+        done: true,
+        fileSelected: false,
+        selectedTags: []
+      })
+      form.reset()
+      this.props.resetImage()
+      this.props.resetNewItem()
+      // document.location.reload()
     } catch (e) {
       console.log(e)
     }
@@ -145,6 +156,8 @@ class ShareForm extends Component {
   render() {
     const { classes, resetImage, updateNewItem, resetNewItem } = this.props
     const { fileSelected } = this.state
+    console.log(this.props)
+
     return (
       <ItemsContainer>
         {({ addItem, tagData: { loading, error, tags } }) => {
@@ -153,13 +166,8 @@ class ShareForm extends Component {
 
           return (
             <Form
-              onSubmit={(form, values) => {
-                this.saveItem(values, tags, addItem)
-                {
-                  /* document.location.reload() */
-                }
-                this.setState({ selectedTags: [] })
-                form.reset()
+              onSubmit={(values, form) => {
+                this.saveItem(values, tags, addItem, form)
               }}
               initialValues={{}}
               validate={this.validate}
@@ -175,7 +183,7 @@ class ShareForm extends Component {
                   <FormSpy
                     subscription={{ values: true }}
                     component={({ values }) => {
-                      if (values) {
+                      if (Object.keys(values).length !== 0) {
                         this.dispatchUpdate(values, tags, updateNewItem)
                       }
                       return ''
@@ -251,8 +259,24 @@ class ShareForm extends Component {
                         ))}
                     </Select>
 
-                    <input type="submit" value="SHARE" />
+                    {/* <input type="submit" value="SHARE" /> */}
+                    <div>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        type="submit"
+                        disabled={submitting || pristine}
+                        onClick={() => {
+                          this.props.resetNewItem()
+                          form.reset()
+                          this.setState({ selectedTags: [] })
+                        }}
+                      >
+                        SHARE
+                      </Button>
+                    </div>
                   </FormControl>
+                  <pre>{JSON.stringify(values, 0, 2)}</pre>
                 </form>
               )}
             />
