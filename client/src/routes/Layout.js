@@ -26,7 +26,7 @@ export default () => (
             <Route exact path="/share" component={Share} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/profile/:userid" component={Profile} />
-            <Redirect to="items" />
+            <Redirect to="/items" />
           </Switch>
         </React.Fragment>
       )

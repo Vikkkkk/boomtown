@@ -1,10 +1,7 @@
 import { adopt } from 'react-adopt'
 import { Query, Mutation } from 'react-apollo'
 import React from 'react'
-
-// @TODO: Uncommment this line when the ViewerProvider is added to the app.
 import { ViewerContext } from '../context/ViewerProvider'
-// -------------------------------
 
 import {
   ALL_TAGS_QUERY,
@@ -71,12 +68,10 @@ const addItem = ({ render }) => (
   </ViewerContext.Consumer>
 )
 const ItemsContainer = adopt({
-  // @TODO: Uncomment each line as you write the corresponding query.
   tagData,
   itemsData,
   userItemsData,
   addItem
-  // -------------------------------
 })
 
 export default ItemsContainer

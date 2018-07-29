@@ -4,20 +4,8 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-
-// import { Redirect } from 'react-router-dom'
-
 import AccountForm from '../../components/AccountForm'
-
 import styles from './styles'
-
-const GET_TAGS = gql`
-  {
-    tags {
-      title
-    }
-  }
-`
 
 const Home = ({ classes }) => {
   return (

@@ -1,9 +1,5 @@
 import gql from 'graphql-tag'
 
-/**
- * Item and user-related queries and mutations.
- */
-
 const ItemFields = gql`
   fragment ItemFields on Item {
     id
@@ -58,16 +54,12 @@ export const ALL_USER_ITEMS_QUERY = gql`
     borrowed {
       ...ItemFields
     }
-
-    # @TODO: Query the bio, email, fullname, items, and borrowed for the user by id
-    # Use the ItemFields fragment for the items and borrowed fields.
   }
   ${ItemFields}
 `
 
 export const ALL_TAGS_QUERY = gql`
   query {
-    # @TODO: Query the id and title fields for tags.
     tags {
       id
       title
@@ -113,8 +105,6 @@ export const SIGNUP_MUTATION = gql`
 
 export const LOGIN_MUTATION = gql`
   mutation login($user: LoginInput!) {
-    # @TODO: Pass the user into the login mutation as an argument
-    # and return the id of the new user when the mutation is complete.
     login(user: $user) {
       id
     }

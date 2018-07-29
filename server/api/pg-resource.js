@@ -1,11 +1,6 @@
 var strs = require('stringstream')
 
 function tagsQueryString(tags, itemid, result) {
-  /**
-   * Challenge:
-   * This function is recursive, and a little complicated.
-   * Can you refactor it to be simpler / more readable?
-   */
   const length = tags.length
   return length === 0
     ? `${result};`
@@ -22,7 +17,7 @@ module.exports = function(postgres) {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
         text:
-          'INSERT INTO users (fullname, email, password) VALUES ($1, $2, $3)', // @TODO: Authentication - Server
+          'INSERT INTO users (fullname, email, password) VALUES ($1, $2, $3)', 
         values: [fullname, email, password]
       }
       try {
@@ -41,7 +36,7 @@ module.exports = function(postgres) {
     },
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
-        text: 'SELECT * FROM users WHERE email = $1', // @TODO: Authentication - Server
+        text: 'SELECT * FROM users WHERE email = $1', 
         values: [email]
       }
       try {
@@ -56,7 +51,7 @@ module.exports = function(postgres) {
       const findUserQuery = {
         text: 'SELECT * FROM users WHERE id = $1',
         values: [id]
-      } // @TODO: Basic queries
+      }
       try {
         const user = await postgres.query(findUserQuery)
         return user.rows[0]
@@ -105,24 +100,6 @@ module.exports = function(postgres) {
       return tags.rows
     },
     async saveNewItem({ item, image, user }) {
-      /**
-       *  @TODO: Adding a New Item
-       *
-       *  Adding a new Item to Posgtres is the most advanced query.
-       *  It requires 3 separate INSERT statements.
-       *
-       *  All of the INSERT statements must:
-       *  1) Proceed in a specific order.
-       *  2) Succeed for the new Item to be considered added
-       *  3) If any of the INSERT queries fail, any successful INSERT
-       *     queries should be 'rolled back' to avoid 'orphan' data in the database.
-       *
-       *  To achieve #3 we'll ue something called a Postgres Transaction!
-       *  The code for the transaction has been provided for you, along with
-       *  helpful comments to help you get started.
-       *
-       *  Read the method and the comments carefully before you begin.
-       */
 
       return new Promise((resolve, reject) => {
         /**

@@ -20,7 +20,6 @@ import {
 } from '../../redux/modules/shareItemPreview'
 import Select from '@material-ui/core/Select'
 import { Checkbox, Typography } from '@material-ui/core'
-// import SelectTag from './SelectTag'
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8

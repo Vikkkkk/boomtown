@@ -18,9 +18,7 @@ const signup = ({ render }) => (
     }
   </Mutation>
 )
-/**
- * @TODO: Use Apollo's <Mutation /> component to use the signup mutation.
- */
+
 const login = ({ render }) => (
   <Mutation
     mutation={LOGIN_MUTATION}
@@ -31,9 +29,7 @@ const login = ({ render }) => (
     }
   </Mutation>
 )
-/**
- * @TODO: Use Apollo's <Mutation /> component to use the login mutation.
- */
+
 const logout = ({ render }) => (
   <Mutation mutation={LOGOUT_MUTATION} onCompleted={() => client.resetStore()}>
     {(mutation, { data, error, loading }) =>
@@ -41,14 +37,10 @@ const logout = ({ render }) => (
     }
   </Mutation>
 )
-/**
- * @TODO: Use Apollo's <Mutation /> component to use the logout mutation.
- */
+
 const AuthContainer = adopt({
-  // @TODO: Uncomment each line as you write the corresponding query.
   signup,
   login,
   logout
-  // -------------------------------
 })
 export default AuthContainer
