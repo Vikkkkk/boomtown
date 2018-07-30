@@ -101,8 +101,8 @@ class ShareForm extends Component {
   }
 
   // sends new item to db
-  async saveItem(values, tags, addItem, form) {
-    console.log(form)
+  async saveItem(values, tags, addItem) {
+    // console.log(form)
     const {
       validity,
       files: [file]
@@ -127,10 +127,10 @@ class ShareForm extends Component {
         fileSelected: false,
         selectedTags: []
       })
-      form.reset()
+      this.form.reset()
       this.props.resetImage()
       this.props.resetNewItem()
-      // document.location.reload()
+      document.location.reload()
     } catch (e) {
       console.log(e)
     }
@@ -166,8 +166,8 @@ class ShareForm extends Component {
 
           return (
             <Form
-              onSubmit={(values, form) => {
-                this.saveItem(values, tags, addItem, form)
+              onSubmit={values => {
+                this.saveItem(values, tags, addItem)
               }}
               initialValues={{}}
               validate={this.validate}
@@ -266,17 +266,11 @@ class ShareForm extends Component {
                         variant="contained"
                         type="submit"
                         disabled={submitting || pristine}
-                        onClick={() => {
-                          this.props.resetNewItem()
-                          form.reset()
-                          this.setState({ selectedTags: [] })
-                        }}
                       >
                         SHARE
                       </Button>
                     </div>
                   </FormControl>
-                  <pre>{JSON.stringify(values, 0, 2)}</pre>
                 </form>
               )}
             />

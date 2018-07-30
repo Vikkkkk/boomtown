@@ -87,7 +87,11 @@ module.exports = function(postgres) {
     },
     async getItemsForUser(id) {
       const items = await postgres.query({
-        text: `SELECT * FROM items WHERE ownerid = $1`,
+        text: `SELECT item.id, item.title,item.description,item.created, item.ownerid, item.borrowerid, up.data as imageurl 
+      FROM items item
+      INNER JOIN uploads up
+      ON up.itemid = item.id
+      WHERE item.ownerid = $1`,
         values: [id]
       })
       return items.rows

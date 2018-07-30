@@ -2,8 +2,6 @@ import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
-import gql from 'graphql-tag'
-import { Query } from 'react-apollo'
 import AccountForm from '../../components/AccountForm'
 import styles from './styles'
 
