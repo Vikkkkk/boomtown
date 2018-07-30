@@ -30,6 +30,7 @@ const Profile = ({ classes }) => {
                 {user.items.length}Items shared {user.borrowed.length} items
                 borrowed
               </Typography>
+              <Typography>"{user.bio}"</Typography>
             </Card>
 
             <Grid container className={classes.root} spacing={0}>

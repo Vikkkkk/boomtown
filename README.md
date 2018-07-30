@@ -1,29 +1,47 @@
 # Boomtown 🏙
 
-## Server
+A web application built with react, where a user can make an account and post items to be shared and seen by other users.
 
-Commands must be run from the `server` directory:
+By: Stuart Johnston
 
-### Installation
+## Technologies Used
+
+### Client
+
+- React
+- Redux
+- Apollo client
+- Node
+
+### Server
+
+- PostgresSQL
+- Apollo Server
+- GraphQL
+- Express
+
+## Installation
 
 `npm install`
 
-### Run
+### Run Client
 
-`npm run start:dev`
+`npm run start:dev --prefix client`
 
-## Client
+### Run Server
 
-Commands must be run from the `client` directory:
+`npm run start:dev --prefix server`
 
-### Installation
+## Major Lesons Learned
 
-`npm install`
+- Creating a database and using SQL queries
+- GraphQL api using Apollo
+- React to handle ui
+- Redux to handle state of ui
+- User authentication and storing passwords
 
-### Run
+## Known Issues
 
-`npm start`
-
-### Build
-
-`npm run build`
+- Items cannot be borrowed
+- More styling to be done and responsivness
+- Newly created users and items needs feedback on success
