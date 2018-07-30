@@ -27,9 +27,9 @@ class Items extends React.Component {
           if (loading) return '...lodading'
           if (error) return 'Error, Sorry bud'
           return (
-            <Grid container className={classes.root} spacing={0}>
+            <Grid container className={classes.root} spacing={8}>
               {items.map(item => (
-                <Grid item xs={4}>
+                <Grid key={item.id} item xs={4}>
                   <ItemCard key={item.id} item={item} />
                 </Grid>
               ))}

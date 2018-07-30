@@ -18,10 +18,10 @@ const Profile = ({ classes }) => {
         if (error) return 'Error, Sorry bud'
 
         return (
-          <div>
-            <Card>
-              <h1>
-                <Avatar>
+          <div className={classes.root}>
+            <Card className={classes.card}>
+              <h1 className={classes.avatarName}>
+                <Avatar className={classes.avatarImage}>
                   <Gravatar email={user.email} />
                 </Avatar>
                 {user.fullname}
@@ -33,9 +33,9 @@ const Profile = ({ classes }) => {
               <Typography>"{user.bio}"</Typography>
             </Card>
 
-            <Grid container className={classes.root} spacing={0}>
+            <Grid container className={classes.grid} spacing={0}>
               {user.items.map(item => (
-                <Grid item xs={4}>
+                <Grid id={item.id} item xs={4}>
                   <ItemCard key={item.id} item={item} />
                 </Grid>
               ))}

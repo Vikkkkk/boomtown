@@ -15,22 +15,10 @@ import { connect } from 'react-redux'
 import {
   resetImage,
   updateNewItem,
-  dispatch,
   resetNewItem
 } from '../../redux/modules/shareItemPreview'
 import Select from '@material-ui/core/Select'
 import { Checkbox, Typography } from '@material-ui/core'
-
-const ITEM_HEIGHT = 48
-const ITEM_PADDING_TOP = 8
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250
-    }
-  }
-}
 
 class ShareForm extends Component {
   constructor(props) {
@@ -154,9 +142,8 @@ class ShareForm extends Component {
   validate() {}
 
   render() {
-    const { classes, resetImage, updateNewItem, resetNewItem } = this.props
+    const { classes, updateNewItem } = this.props
     const { fileSelected } = this.state
-    console.log(this.props)
 
     return (
       <ItemsContainer>
