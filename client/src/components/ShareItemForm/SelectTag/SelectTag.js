@@ -5,25 +5,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { Checkbox, InputLabel } from '@material-ui/core'
 import { Field } from 'react-final-form'
 
-// const styles = theme => ({
-//   root: {
-//     display: 'flex',
-//     flexWrap: 'wrap'
-//   },
-//   formControl: {
-//     margin: theme.spacing.unit,
-//     minWidth: 120,
-//     maxWidth: 300
-//   },
-//   chips: {
-//     display: 'flex',
-//     flexWrap: 'wrap'
-//   },
-//   chip: {
-//     margin: theme.spacing.unit / 4
-//   }
-// })
-
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
 const MenuProps = {
@@ -46,7 +27,7 @@ export default class SelectTag extends Component {
   }
 
   render() {
-    console.log(this.state)
+
     return (
       <ItemsContainer>
         {({ tagData: { loading, error, tags } }) => {

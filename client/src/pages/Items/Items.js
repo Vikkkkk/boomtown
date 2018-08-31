@@ -19,8 +19,6 @@ class Items extends React.Component {
 
   render() {
     const { classes } = this.props
-    // const { spacing } = this.state
-
     return (
       <ItemsContainer>
         {({ itemsData: { loading, error, items } }) => {
@@ -42,7 +40,10 @@ class Items extends React.Component {
 }
 
 Items.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(Items)

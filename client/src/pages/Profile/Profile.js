@@ -8,12 +8,12 @@ import Avatar from '@material-ui/core/Avatar'
 import Gravatar from 'react-gravatar'
 import Typography from '@material-ui/core/Typography'
 import styles from './styles'
+import PropTypes from 'prop-types';
 
 const Profile = ({ classes }) => {
   return (
     <ItemsContainer>
       {({ userItemsData: { loading, error, user } }) => {
-        console.log(user)
         if (loading) return '...lodading'
         if (error) return 'Error, Sorry bud'
 
@@ -35,7 +35,7 @@ const Profile = ({ classes }) => {
 
             <Grid container className={classes.grid} spacing={0}>
               {user.items.map(item => (
-                <Grid id={item.id} item xs={4}>
+                <Grid key={item.id} id={item.id} item xs={4}>
                   <ItemCard key={item.id} item={item} />
                 </Grid>
               ))}
@@ -45,6 +45,13 @@ const Profile = ({ classes }) => {
       }}
     </ItemsContainer>
   )
+}
+
+Profile.propTypes = {
+  classes: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(Profile)

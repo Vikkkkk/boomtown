@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import TextField from './helpers/TextField'
 import { withStyles } from '@material-ui/core/styles'
 import ItemsContainer from '../../containers/ItemsContainer'
-
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import {
   resetImage,
@@ -90,7 +90,6 @@ class ShareForm extends Component {
 
   // sends new item to db
   async saveItem(values, tags, addItem) {
-    // console.log(form)
     const {
       validity,
       files: [file]
@@ -115,10 +114,10 @@ class ShareForm extends Component {
         fileSelected: false,
         selectedTags: []
       })
-      this.form.reset()
+      // this.form.reset()
       this.props.resetImage()
       this.props.resetNewItem()
-      document.location.reload()
+      // document.location.reload()
     } catch (e) {
       console.log(e)
     }
@@ -281,6 +280,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(resetImage())
   }
 })
+
+ShareForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  updateNewItem: PropTypes.func.isRequired,
+  resetNewItem: PropTypes.func.isRequired,
+  resetImage: PropTypes.func.isRequired
+}
 
 export default connect(
   undefined,
